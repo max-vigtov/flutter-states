@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:states/models/user.dart';
+import 'package:states/services/user_service.dart';
 
 class Pagina1Screen extends StatelessWidget {
   const Pagina1Screen({super.key});
@@ -10,7 +12,9 @@ class Pagina1Screen extends StatelessWidget {
         title: Text('Pagina 1', style: TextStyle( color: Colors.white),),
         backgroundColor: Colors.blue,
       ),
-      body: UserDataWidget(),
+      body: userService.userExist
+        ? UserDataWidget( userService.user,)
+        : Center(child: Text('No hay información')),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         child: Icon(Icons.accessibility_new, color: Colors.white,),
@@ -22,9 +26,9 @@ class Pagina1Screen extends StatelessWidget {
 }
 
 class UserDataWidget extends StatelessWidget {
-  const UserDataWidget({
-    super.key,
-  });
+
+  final User? user;
+  const UserDataWidget( this.user, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +42,8 @@ class UserDataWidget extends StatelessWidget {
           Text('General', style: TextStyle( fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),
 
-          ListTile( title: Text('Nombre: '),),
-          ListTile( title: Text('Edad: '),),
+          ListTile( title: Text('Nombre: ${user?.name ?? ''}'),),
+          ListTile( title: Text('Edad: ${user?.age ?? ''}') ),
 
           Text('Profesiones', style: TextStyle( fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),          

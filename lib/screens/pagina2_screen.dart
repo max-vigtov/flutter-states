@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:states/models/user.dart';
+import 'package:states/services/user_service.dart';
 
 class Pagina2Screen extends StatelessWidget {
   const Pagina2Screen({super.key});
@@ -16,12 +18,18 @@ class Pagina2Screen extends StatelessWidget {
           children: [
             MaterialButton(
               color: Colors.blue,
-              onPressed: (){},
+              onPressed: (){
+
+                final newUser = User(name: 'Max', age: 24, professions: ['Developer']);
+                userService.loadUser(newUser);
+              },
               child: Text('Establecer Usuario', style: TextStyle( color: Colors.white),),
             ),
             MaterialButton(
               color: Colors.blue,
-              onPressed: (){},
+              onPressed: (){
+                userService.changeAge(30);
+              },
               child: Text('Cambiar edad', style: TextStyle( color: Colors.white),),
             ),
             MaterialButton(
