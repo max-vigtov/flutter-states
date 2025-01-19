@@ -9,7 +9,16 @@ class Pagina2Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pagina 2', style: TextStyle( color: Colors.white),),
+        title: StreamBuilder(
+        stream: userService.userStream,
+        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          return snapshot.hasData
+            ?  Text( snapshot.data!.name, style: TextStyle( color: Colors.white),) //UserDataWidget( userService.user,)
+            :  Text('No hay información', style: TextStyle( color: Colors.white),) ;
+        },
+      ),
+        
+        
         backgroundColor: Colors.blue,
       ),
       body: Center(

@@ -12,9 +12,14 @@ class Pagina1Screen extends StatelessWidget {
         title: Text('Pagina 1', style: TextStyle( color: Colors.white),),
         backgroundColor: Colors.blue,
       ),
-      body: userService.userExist
-        ? UserDataWidget( userService.user,)
-        : Center(child: Text('No hay información')),
+      body: StreamBuilder(
+        stream: userService.userStream,
+        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          return snapshot.hasData
+            ? UserDataWidget( userService.user,)
+            : Center(child: Text('No hay información'));        
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         child: Icon(Icons.accessibility_new, color: Colors.white,),
