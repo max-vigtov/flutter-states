@@ -24,19 +24,23 @@ class Pagina2Screen extends StatelessWidget {
             MaterialButton(
               color: Colors.blue,
               onPressed: (){               
-                final newUser = User('Max Vigueras', 24, ['Developer']);
+                final newUser = User('Max Vigueras', 24, ['Developer', 'Engineer']);
                 userService.setUser = newUser;
               },
               child: Text('Establecer Usuario', style: TextStyle( color: Colors.white),),
             ),
+
             MaterialButton(
               color: Colors.blue,
               onPressed: () => userService.changeAge(30),
               child: Text('Cambiar edad', style: TextStyle( color: Colors.white),),
             ),
+
             MaterialButton(
               color: Colors.blue,
-              onPressed: (){},
+              onPressed: (){
+                userService.addProfession();
+              },
               child: Text('Añadir profesion', style: TextStyle( color: Colors.white),),
             )
           ],

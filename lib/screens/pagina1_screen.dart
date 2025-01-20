@@ -58,9 +58,8 @@ class UserDataWidget extends StatelessWidget {
           Text('Profesiones', style: TextStyle( fontSize: 18, fontWeight: FontWeight.bold)),
           Divider(),          
 
-          ListTile( title: Text('Profesion 1: ')),
-          ListTile( title: Text('Profesion 2: ')),
-
+          //ListTile( title: Text('Profesion 1: ')),
+            if (user != null ) ...user!.professions.map((profession) => ListTile( title: Text( profession )))
         ],
       ),
     );

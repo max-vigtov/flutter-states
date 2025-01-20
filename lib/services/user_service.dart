@@ -23,5 +23,11 @@ class UserService with ChangeNotifier{
     notifyListeners();
   }
 
-  
+  void addProfession(){
+      if (_user != null) {
+      _user!.professions.add('Profession ${ _user!.professions.length + 1}');
+      notifyListeners();      
+    }  
+  }
+
 }
