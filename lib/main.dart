@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:states/screens/pagina1_screen.dart';
 import 'package:states/screens/pagina2_screen.dart';
+
+import 'bloc/user/user_bloc.dart';
 
 void main() {
   runApp(const MainApp());
@@ -11,14 +14,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'pagina1',
-      routes: {
-        'pagina1': (context) => Pagina1Screen(),
-        'pagina2': (context) => Pagina2Screen(),
-        
-      },
+    return  MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => UserBloc()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: 'pagina1',
+        routes: {
+          'pagina1': (context) => Pagina1Screen(),
+          'pagina2': (context) => Pagina2Screen(),
+          
+        },
+      ),
     );
   }
 }
